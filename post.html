@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <link rel="stylesheet" href="post.css" />
+
+    <title>TB Diesel - Post 1</title>
+  </head>
+
+  <body>
+    <header id="header">
+      <div id="header-content">
+        <div class="wrapper-logo">
+          <a href="/">
+            <img src="images/logo.png" alt="Logo TruckStar" />
+          </a>
+        </div>
+        <button
+          id="menu-icon"
+          onclick="handleDisplayMenu()"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="menu"
+          type="button"
+        >
+          <img src="/images/menu.svg" alt="" />
+        </button>
+        <nav id="menu" aria-label="Menu principal">
+          <a href="/services.html">Serviços</a>
+          <a href="/index.html#tow-truck">Guincho</a>
+          <a href="/products.html">Produtos</a>
+          <a href="/index.html#about">Sobre</a>
+          <a href="/blog.html">Blog</a>
+        </nav>
+        <a id="menu-whatsapp-btn" class="btn btn-primary" href="#">WhatsApp</a>
+      </div>
+    </header>
+
+    <a
+      id="whatsapp-btn"
+      href="https://wa.me/554736272028?text=Olá%20TB%20Diesel!"
+      target="_blank"
+    >
+      <img src="images/whatsapp-logo.png" alt="Logo WhatsApp" />
+    </a>
+
+    <main>
+      <section id="post">
+        <article class="content">
+          <h1>Post 1</h1>
+          <img
+            class="post-image"
+            src="/images/carousel/1.png"
+            alt="Imagem principal do post"
+          />
+          <div class="post-body">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p>
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit
+              anim id est laborum.
+            </p>
+            <p>
+              Integer posuere erat a ante venenatis dapibus posuere velit
+              aliquet. Cras mattis consectetur purus sit amet fermentum.
+              Curabitur blandit tempus porttitor.
+            </p>
+          </div>
+          <section class="post-video" aria-label="Vídeo do YouTube">
+            <iframe
+              src="https://www.youtube.com/embed/taTmpYQ_3jk"
+              title="Steve Jobs apresenta primeiro iPhone (2007 - Legendado)"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share;
+              "
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </section>
+          <p id="post-date">
+            Publicado em
+            <time datetime="2026-06-28">28 de junho de 2026</time>
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="wrapper-logo">
+            <a href="/">
+              <img src="/images/logo.png" alt="Logo TruckStar" />
+            </a>
+          </div>
+          <div class="footer-social-links">
+            <a
+              href="https://wa.me/554736272028?text=Olá%20TB%20Diesel!"
+              target="_blank"
+              rel="noopener noreferrer"
+              >WhatsApp</a
+            >
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contato</h3>
+          <address class="footer-details">
+            <a href="mailto:contato@tbdiesel.com.br">contato@tbdiesel.com.br</a>
+            <a href="tel:36272028">(47) 3627-2028</a>
+          </address>
+        </div>
+
+        <div class="footer-column">
+          <h3>Horários</h3>
+          <div class="footer-details">
+            <p>Segunda a Sexta</p>
+            <p>08:00 - 18:00</p>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Links</h3>
+          <nav class="footer-details" aria-label="Links rápidos">
+            <ul>
+              <li><a href="/index.html">Início</a></li>
+              <li><a href="/services.html">Serviços</a></li>
+              <li><a href="/index.html#tow-truck">Guincho</a></li>
+              <li><a href="/products.html">Produtos</a></li>
+              <li><a href="/index.html#about">Sobre</a></li>
+              <li><a href="/blog.html">Blog</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        <p>© Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script>
+      // --------- HEADER ---------
+
+      const header = document.getElementById("header");
+
+      function updateHeaderHeight() {
+        document.documentElement.style.setProperty(
+          "--header-height",
+          `${header.offsetHeight}px`,
+        );
+      }
+
+      updateHeaderHeight();
+
+      const headerObserver = new ResizeObserver(updateHeaderHeight);
+      headerObserver.observe(header);
+
+      // --------- MENU ---------
+
+      const menu = document.getElementById("menu");
+      const menuIcon = document.getElementById("menu-icon");
+
+      function handleDisplayMenu() {
+        const isOpen = menu.classList.toggle("menu-open");
+
+        if (isOpen) {
+          menuIcon.querySelector("img").src = "/images/close.svg";
+          menuIcon.setAttribute("aria-label", "Fechar menu");
+        } else {
+          menuIcon.querySelector("img").src = "/images/menu.svg";
+          menuIcon.setAttribute("aria-label", "Abrir menu");
+        }
+
+        menuIcon.setAttribute("aria-expanded", String(isOpen));
+      }
+    </script>
+  </body>
+</html>

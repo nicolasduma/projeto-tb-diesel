@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <link rel="stylesheet" href="admin-pages.css" />
+    <link rel="stylesheet" href="create-post.css" />
+    <title>TB Diesel | Criar post</title>
+  </head>
+  <body>
+    <header id="header">
+      <div id="header-content">
+        <a class="wrapper-logo" href="/blog.html" aria-label="Voltar ao blog">
+          <img src="images/logo.png" alt="Logo TruckStar" />
+        </a>
+        <span class="admin-label">Painel administrativo</span>
+        <a class="btn btn-primary" href="manage-posts.html">
+          Gerenciar posts
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section id="create-post">
+        <div class="content">
+          <div class="create-post-heading">
+            <h1 id="form-heading">Criar post</h1>
+            <p>Preencha as informações e gere uma prévia antes de publicar.</p>
+          </div>
+
+          <div class="create-post-layout">
+            <form id="post-form" class="create-post-card">
+              <div class="form-field">
+                <div class="field-heading">
+                  <label for="post-title">Título do post</label>
+                  <span id="title-count" class="character-count"
+                    >0/120 caracteres</span
+                  >
+                </div>
+                <input
+                  id="post-title"
+                  name="title"
+                  type="text"
+                  maxlength="120"
+                  placeholder="Ex.: Cuidados essenciais com o caminhão"
+                  required
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="post-date">Data de publicação do post</label>
+                <input id="post-date" name="date" type="date" />
+                <small
+                  >Você pode alterar a data ou deixar o campo em branco para
+                  usar a data atual.</small
+                >
+              </div>
+
+              <div class="form-field">
+                <div class="field-heading">
+                  <label for="post-body">Corpo do post</label>
+                  <span id="body-count" class="character-count"
+                    >0/10000 caracteres</span
+                  >
+                </div>
+                <textarea
+                  id="post-body"
+                  name="body"
+                  maxlength="10000"
+                  rows="12"
+                  placeholder="Escreva o conteúdo do post..."
+                  required
+                ></textarea>
+                <button id="add-paragraph" class="text-button" type="button">
+                  + Adicionar parágrafo
+                </button>
+                <small
+                  >O botão insere uma quebra de parágrafo no ponto do
+                  cursor.</small
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="post-image">Imagem do post</label>
+                <input
+                  id="post-image"
+                  name="image"
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp,image/gif,image/avif"
+                  aria-describedby="image-help"
+                  required
+                />
+                <small id="image-help"
+                  >Selecione uma imagem PNG, JPEG, WebP, GIF ou AVIF para
+                  exibi-la na prévia.</small
+                >
+              </div>
+
+              <div class="form-field">
+                <label for="youtube-url">Vídeo do YouTube (opcional)</label>
+                <input
+                  id="youtube-url"
+                  name="youtubeUrl"
+                  type="url"
+                  inputmode="url"
+                  placeholder="https://www.youtube.com/watch?v=..."
+                  aria-describedby="youtube-help"
+                />
+                <small id="youtube-help"
+                  >Cole o link do vídeo para incluí-lo na prévia do post.</small
+                >
+              </div>
+
+              <div class="form-actions">
+                <button
+                  id="preview-button"
+                  class="btn btn-primary"
+                  type="button"
+                >
+                  Gerar prévia
+                </button>
+                <button
+                  id="cancel-button"
+                  class="btn btn-primary"
+                  type="button"
+                >
+                  Cancelar
+                </button>
+                <button id="submit-button" class="btn btn-primary">
+                  Publicar
+                </button>
+              </div>
+            </form>
+
+            <aside class="preview-panel" aria-labelledby="preview-heading">
+              <div class="preview-panel-heading">
+                <p class="section-eyebrow">Visualização</p>
+                <h2 id="preview-heading">Prévia do post</h2>
+              </div>
+              <article
+                id="post-preview"
+                class="post-preview"
+                aria-live="polite"
+              >
+                <h3 id="preview-title" class="preview-placeholder">
+                  O título aparecerá aqui
+                </h3>
+                <img id="preview-image" class="preview-image" alt="" hidden />
+                <div id="preview-body" class="preview-body">
+                  <p class="preview-placeholder">
+                    O conteúdo do post aparecerá aqui após gerar a prévia.
+                  </p>
+                </div>
+                <div id="preview-video" class="preview-video" hidden></div>
+                <p id="preview-date" class="preview-date" hidden>
+                  Publicado em
+                  <time id="preview-date-value"></time>
+                </p>
+              </article>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const header = document.getElementById("header");
+
+      function updateHeaderHeight() {
+        document.documentElement.style.setProperty(
+          "--header-height",
+          `${header.offsetHeight}px`,
+        );
+      }
+
+      updateHeaderHeight();
+      new ResizeObserver(updateHeaderHeight).observe(header);
+
+      const form = document.getElementById("post-form");
+      const titleInput = document.getElementById("post-title");
+      const dateInput = document.getElementById("post-date");
+      const bodyInput = document.getElementById("post-body");
+      const imageInput = document.getElementById("post-image");
+      const youtubeInput = document.getElementById("youtube-url");
+      const titleCount = document.getElementById("title-count");
+      const bodyCount = document.getElementById("body-count");
+      const maximumBodyLength = Number(bodyInput.maxLength);
+      let previewImageUrl = "";
+      let existingImageUrl = "";
+
+      const editingPost =
+        new URLSearchParams(window.location.search).get("mode") === "edit"
+          ? JSON.parse(
+              sessionStorage.getItem("truckstar-post-to-edit") || "null",
+            )
+          : null;
+
+      if (editingPost) {
+        document.getElementById("form-heading").textContent = "Editar post";
+        document.title = "TB Diesel | Editar post";
+        document.getElementById("submit-button").textContent =
+          "Salvar alterações";
+        titleInput.value = editingPost.title;
+        dateInput.value = editingPost.date;
+        bodyInput.value = editingPost.body;
+        youtubeInput.value = editingPost.youtubeUrl || "";
+        existingImageUrl = editingPost.image || "";
+        imageInput.required = !existingImageUrl;
+      }
+
+      function getToday() {
+        const now = new Date();
+        const localDate = new Date(
+          now.getTime() - now.getTimezoneOffset() * 60000,
+        );
+        return localDate.toISOString().slice(0, 10);
+      }
+
+      function validateRequiredContent() {
+        titleInput.setCustomValidity(
+          titleInput.value.trim() ? "" : "Informe o título do post.",
+        );
+        bodyInput.setCustomValidity(
+          bodyInput.value.trim() ? "" : "Informe o conteúdo do post.",
+        );
+      }
+
+      function updateCharacterCounts() {
+        titleCount.textContent = `${titleInput.value.length}/${titleInput.maxLength} caracteres`;
+        bodyCount.textContent = `${bodyInput.value.length}/${maximumBodyLength} caracteres`;
+      }
+
+      function extractYouTubeId(value) {
+        if (!value) return "";
+
+        let url;
+        try {
+          url = new URL(value);
+        } catch {
+          return null;
+        }
+
+        const hostname = url.hostname.toLowerCase();
+        const isYouTube =
+          hostname === "youtu.be" ||
+          hostname === "youtube.com" ||
+          hostname.endsWith(".youtube.com");
+
+        if (!isYouTube || url.protocol !== "https:") return null;
+
+        const segments = url.pathname.split("/").filter(Boolean);
+        const videoId =
+          hostname === "youtu.be"
+            ? segments[0]
+            : url.searchParams.get("v") ||
+              (["embed", "shorts", "live"].includes(segments[0])
+                ? segments[1]
+                : "");
+
+        return /^[\w-]{11}$/.test(videoId || "") ? videoId : null;
+      }
+
+      function renderPreview() {
+        validateRequiredContent();
+        if (!form.reportValidity()) return;
+
+        const imageFile = imageInput.files[0];
+        const supportedImageTypes = [
+          "image/png",
+          "image/jpeg",
+          "image/webp",
+          "image/gif",
+          "image/avif",
+        ];
+        imageInput.setCustomValidity(
+          imageFile && !supportedImageTypes.includes(imageFile.type)
+            ? "Selecione uma imagem PNG, JPEG, WebP, GIF ou AVIF."
+            : "",
+        );
+        if (!imageInput.reportValidity()) return;
+
+        const videoId = extractYouTubeId(youtubeInput.value.trim());
+        youtubeInput.setCustomValidity(
+          videoId === null ? "Informe um link válido de vídeo do YouTube." : "",
+        );
+        if (!youtubeInput.reportValidity()) return;
+
+        const postDate = dateInput.value || getToday();
+        dateInput.value = postDate;
+
+        const previewTitle = document.getElementById("preview-title");
+        previewTitle.textContent = titleInput.value.trim();
+        previewTitle.classList.remove("preview-placeholder");
+
+        const previewImage = document.getElementById("preview-image");
+        if (previewImageUrl.startsWith("blob:")) {
+          URL.revokeObjectURL(previewImageUrl);
+        }
+        previewImageUrl = imageFile
+          ? URL.createObjectURL(imageFile)
+          : existingImageUrl;
+        previewImage.hidden = !previewImageUrl;
+        previewImage.alt = previewImageUrl
+          ? `Imagem do post: ${titleInput.value.trim()}`
+          : "";
+        previewImage.removeAttribute("src");
+        if (previewImageUrl) previewImage.src = previewImageUrl;
+
+        const previewDate = document.getElementById("preview-date-value");
+        const parsedDate = new Date(`${postDate}T00:00:00`);
+        previewDate.dateTime = postDate;
+        previewDate.textContent = new Intl.DateTimeFormat("pt-BR", {
+          dateStyle: "long",
+        }).format(parsedDate);
+        document.getElementById("preview-date").hidden = false;
+
+        const previewBody = document.getElementById("preview-body");
+        previewBody.replaceChildren();
+        bodyInput.value
+          .split(/\n\s*\n/)
+          .map((paragraph) => paragraph.trim())
+          .filter(Boolean)
+          .forEach((paragraph) => {
+            const element = document.createElement("p");
+            element.textContent = paragraph;
+            previewBody.append(element);
+          });
+
+        const previewVideo = document.getElementById("preview-video");
+        previewVideo.replaceChildren();
+        previewVideo.hidden = !videoId;
+        if (videoId) {
+          const iframe = document.createElement("iframe");
+          iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+          iframe.title = `Vídeo do YouTube: ${titleInput.value.trim()}`;
+          iframe.loading = "lazy";
+          iframe.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          iframe.allowFullscreen = true;
+          previewVideo.append(iframe);
+        }
+      }
+
+      document.getElementById("add-paragraph").addEventListener("click", () => {
+        const start = bodyInput.selectionStart;
+        const end = bodyInput.selectionEnd;
+        const updatedLength = bodyInput.value.length - (end - start) + 2;
+        if (updatedLength > maximumBodyLength) {
+          bodyInput.setCustomValidity(
+            "O corpo atingiu o limite máximo de caracteres.",
+          );
+          bodyInput.reportValidity();
+          bodyInput.focus();
+          return;
+        }
+
+        bodyInput.setRangeText("\n\n", start, end, "end");
+        bodyInput.dispatchEvent(new Event("input", { bubbles: true }));
+        bodyInput.focus();
+      });
+
+      titleInput.addEventListener("input", updateCharacterCounts);
+      bodyInput.addEventListener("input", updateCharacterCounts);
+      titleInput.addEventListener("input", validateRequiredContent);
+      bodyInput.addEventListener("input", validateRequiredContent);
+      youtubeInput.addEventListener("input", () => {
+        youtubeInput.setCustomValidity("");
+      });
+      imageInput.addEventListener("change", () => {
+        imageInput.setCustomValidity("");
+      });
+      document
+        .getElementById("preview-button")
+        .addEventListener("click", renderPreview);
+
+      document.getElementById("cancel-button").addEventListener("click", () => {
+        form.reset();
+        dateInput.value = getToday();
+        titleInput.setCustomValidity("");
+        bodyInput.setCustomValidity("");
+        imageInput.setCustomValidity("");
+        youtubeInput.setCustomValidity("");
+
+        if (previewImageUrl.startsWith("blob:")) {
+          URL.revokeObjectURL(previewImageUrl);
+        }
+        previewImageUrl = "";
+        existingImageUrl = "";
+        imageInput.required = true;
+        document.getElementById("form-heading").textContent = "Criar post";
+        document.title = "TB Diesel | Criar post";
+        document.getElementById("submit-button").textContent = "Publicar";
+
+        const previewTitle = document.getElementById("preview-title");
+        previewTitle.textContent = "O título aparecerá aqui";
+        previewTitle.classList.add("preview-placeholder");
+
+        const previewImage = document.getElementById("preview-image");
+        previewImage.removeAttribute("src");
+        previewImage.alt = "";
+        previewImage.hidden = true;
+
+        const previewDate = document.getElementById("preview-date-value");
+        previewDate.removeAttribute("datetime");
+        previewDate.textContent = "";
+        document.getElementById("preview-date").hidden = true;
+
+        const previewBody = document.getElementById("preview-body");
+        const placeholder = document.createElement("p");
+        placeholder.className = "preview-placeholder";
+        placeholder.textContent =
+          "O conteúdo do post aparecerá aqui após gerar a prévia.";
+        previewBody.replaceChildren(placeholder);
+
+        const previewVideo = document.getElementById("preview-video");
+        previewVideo.replaceChildren();
+        previewVideo.hidden = true;
+
+        updateCharacterCounts();
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+      });
+
+      if (!editingPost) dateInput.value = getToday();
+      updateCharacterCounts();
+      if (editingPost) renderPreview();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+
+    <title>TB Diesel - Oficina mecânica e guincho 24h</title>
+  </head>
+
+  <body>
+    <header id="header">
+      <div id="header-content">
+        <div class="wrapper-logo">
+          <a href="/">
+            <img src="images/logo.png" alt="Logo TruckStar" />
+          </a>
+        </div>
+        <button
+          id="menu-icon"
+          onclick="handleDisplayMenu()"
+          aria-label="Abrir menu"
+          aria-expanded="false"
+          aria-controls="menu"
+          type="button"
+        >
+          <img src="/images/menu.svg" alt="" />
+        </button>
+        <nav id="menu" aria-label="Menu principal">
+          <a href="/services.html">Serviços</a>
+          <a href="#tow-truck">Guincho</a>
+          <a href="/products.html">Produtos</a>
+          <a href="#about">Sobre</a>
+          <a href="/blog.html">Blog</a>
+        </nav>
+        <a
+          id="menu-whatsapp-btn"
+          class="btn btn-primary"
+          href="https://wa.me/554736272028?text=Olá%20TB%20Diesel!"
+          >WhatsApp</a
+        >
+      </div>
+    </header>
+
+    <a
+      id="whatsapp-btn"
+      href="https://wa.me/554736272028?text=Olá%20TB%20Diesel!"
+      target="_blank"
+    >
+      <img src="images/whatsapp-logo.png" alt="Logo WhatsApp" />
+    </a>
+
+    <section id="carousel" aria-label="Destaque principal">
+      <input
+        type="radio"
+        name="carousel-radio"
+        id="carousel-radio-1"
+        class="carousel-radio"
+        onchange="changeImageCarouselByMenu(this)"
+        value="1"
+      />
+      <input
+        type="radio"
+        name="carousel-radio"
+        id="carousel-radio-2"
+        class="carousel-radio"
+        onchange="changeImageCarouselByMenu(this)"
+        value="2"
+      />
+      <input
+        type="radio"
+        name="carousel-radio"
+        id="carousel-radio-3"
+        class="carousel-radio"
+        onchange="changeImageCarouselByMenu(this)"
+        value="3"
+      />
+      <input
+        type="radio"
+        name="carousel-radio"
+        id="carousel-radio-4"
+        class="carousel-radio"
+        onchange="changeImageCarouselByMenu(this)"
+        value="4"
+      />
+
+      <div id="carousel-background">
+        <div id="carousel-wrapper-image-1" class="carousel-wrapper-image">
+          <img class="carousel-image" src="/images/carousel/1.png" alt="" />
+        </div>
+
+        <div id="carousel-wrapper-image-2" class="carousel-wrapper-image">
+          <img class="carousel-image" src="/images/carousel/2.png" alt="" />
+        </div>
+
+        <div id="carousel-wrapper-image-3" class="carousel-wrapper-image">
+          <img class="carousel-image" src="/images/carousel/3.png" alt="" />
+        </div>
+
+        <div id="carousel-wrapper-image-4" class="carousel-wrapper-image">
+          <img class="carousel-image" src="/images/carousel/4.png" alt="" />
+        </div>
+      </div>
+
+      <div id="carousel-content">
+        <div id="carousel-wrapper-arrows">
+          <button
+            class="carousel-arrow-btn"
+            onclick="changeImageCarouselByArrow('left')"
+            aria-label="Imagem anterior"
+            aria-controls="carousel"
+          >
+            <img src="/images/chevron-left.svg" alt="" />
+          </button>
+
+          <button
+            class="carousel-arrow-btn"
+            onclick="changeImageCarouselByArrow('right')"
+            aria-label="Próxima imagem"
+            aria-controls="carousel"
+          >
+            <img src="/images/chevron-right.svg" alt="" />
+          </button>
+        </div>
+
+        <div id="carousel-text">
+          <h1>Oficina mecânica e guincho 24h</h1>
+          <h3>
+            Oficina mecânica para veículos pesados, aferição de tacógrafos e
+            guincho com atendimento rápido e seguro.
+          </h3>
+        </div>
+
+        <div id="carousel-menu-navigation">
+          <button
+            type="button"
+            id="carousel-navigation-btn-1"
+            class="carousel-navigation-btn"
+            data-slide="1"
+            aria-label="Ir para o slide 1"
+            onclick="changeImageCarouselByMenu({ value: 1 })"
+          ></button>
+          <button
+            type="button"
+            id="carousel-navigation-btn-2"
+            class="carousel-navigation-btn"
+            data-slide="2"
+            aria-label="Ir para o slide 2"
+            onclick="changeImageCarouselByMenu({ value: 2 })"
+          ></button>
+          <button
+            type="button"
+            id="carousel-navigation-btn-3"
+            class="carousel-navigation-btn"
+            data-slide="3"
+            aria-label="Ir para o slide 3"
+            onclick="changeImageCarouselByMenu({ value: 3 })"
+          ></button>
+          <button
+            type="button"
+            id="carousel-navigation-btn-4"
+            class="carousel-navigation-btn"
+            data-slide="4"
+            aria-label="Ir para o slide 4"
+            onclick="changeImageCarouselByMenu({ value: 4 })"
+          ></button>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section id="services">
+        <div id="services-content" class="content">
+          <h1>Serviços</h1>
+          <div class="service-grid">
+            <article class="offer-card service-card">
+              <div class="service-icon">⏱️</div>
+              <h2>Aferição de tacógrafos</h2>
+
+              <p>
+                Mantenha o tacógrafo em dia com aferição especializada e mais
+                segurança para sua operação.
+              </p>
+            </article>
+            <article class="offer-card service-card">
+              <div class="service-icon">🛢️</div>
+              <h2>Troca de óleo</h2>
+              <p>
+                Proteja o motor do seu veículo com a troca de óleo adequada e
+                conte com mais tranquilidade na estrada.
+              </p>
+            </article>
+            <article class="offer-card service-card">
+              <div class="service-icon">🛞</div>
+              <h2>Revisão de freios</h2>
+              <p>
+                Mais confiança ao dirigir começa com freios revisados e prontos
+                para responder quando você precisa.
+              </p>
+            </article>
+            <article class="offer-card service-card">
+              <div class="service-icon">🧑‍🔧</div>
+              <h2>Manutenção corretiva</h2>
+              <p>
+                Identificamos e corrigimos falhas para ajudar seu veículo a
+                voltar ao trabalho com segurança.
+              </p>
+            </article>
+            <article class="offer-card service-card">
+              <div class="service-icon">🚨</div>
+              <h2>Troca de lanternas</h2>
+              <p>
+                Melhore a visibilidade e sinalização do seu veículo com a troca
+                de lanternas danificadas.
+              </p>
+            </article>
+            <article class="offer-card service-card">
+              <div class="service-icon">🚚</div>
+              <h2>Guincho</h2>
+              <p>
+                Precisou de ajuda na estrada? Conte com serviço de guincho para
+                seguir viagem com mais tranquilidade.
+              </p>
+            </article>
+          </div>
+          <a href="/services.html" class="btn btn-second"
+            >Ver todos os serviços</a
+          >
+        </div>
+      </section>
+
+      <section id="tow-truck" class="colored">
+        <div id="tow-truck-content" class="content">
+          <div class="tow-truck-text">
+            <p class="section-eyebrow">Atendimento 24 horas</p>
+            <h1>Guincho</h1>
+            <p>
+              Seu caminhão parou na estrada? Nossa equipe está pronta para
+              realizar o resgate com agilidade e segurança, onde você precisar.
+            </p>
+            <p>
+              Contamos com equipamentos preparados para carros, caminhões e
+              máquinas, além de um atendimento especializado para reduzir o
+              tempo parado e cuidar do seu patrimônio.
+            </p>
+            <a
+              class="btn btn-primary"
+              href="https://wa.me/554736272028?text=Olá%20TB%20Diesel!%20Preciso%20de%20um%20guincho."
+              >Solicitar guincho</a
+            >
+          </div>
+          <div class="tow-truck-image">
+            <img
+              src="/images/tow-truck.png"
+              alt="Caminhão de guincho em atendimento"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section id="products">
+        <div id="products-content" class="content">
+          <h1>Produtos</h1>
+          <div class="product-grid">
+            <article class="offer-card product-card">
+              <img
+                class="product-image"
+                src="/images/products/oleo-motor.png"
+                alt="Produto 1"
+              />
+              <h2>Óleo de Motor</h2>
+            </article>
+            <article class="offer-card product-card">
+              <img
+                class="product-image"
+                src="/images/products/tacografo.png"
+                alt="Produto 2"
+              />
+              <h2>Tacógrafo</h2>
+            </article>
+            <article class="offer-card product-card">
+              <img
+                class="product-image"
+                src="/images/products/disco-tacografo.png"
+                alt="Produto 3"
+              />
+              <h2>Disco de Tacógrafo</h2>
+            </article>
+
+            <article class="offer-card product-card">
+              <img
+                class="product-image"
+                src="/images/products/lanterna.png"
+                alt="Produto 4"
+              />
+              <h2>Lanterna</h2>
+            </article>
+            <article class="offer-card product-card">
+              <img
+                class="product-image"
+                src="/images/products/lampada.png"
+                alt="Produto 5"
+              />
+              <h2>Lâmpada</h2>
+            </article>
+            <article class="offer-card product-card">
+              <img
+                class="product-image"
+                src="/images/products/aditivo-radiador.png"
+                alt="Produto 6"
+              />
+              <h2>Aditivo de Radiador</h2>
+            </article>
+          </div>
+          <a href="/products.html" class="btn btn-second"
+            >Ver todos os produtos</a
+          >
+        </div>
+      </section>
+
+      <section id="about" class="colored">
+        <div id="about-content" class="content">
+          <h1>Sobre a empresa</h1>
+          <div class="about-grid">
+            <div class="about-card">
+              <article id="about-history">
+                <div class="about-media">
+                  <img
+                    id="about-image"
+                    src="/images/carousel/1.png"
+                    alt="História da empresa"
+                  />
+                </div>
+                <div class="about-text">
+                  <h2>História</h2>
+                  <p>
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's
+                    standard dummy text ever since 1966, when designers at
+                    Letraset and James Mosley, the librarian at St Bride
+                    Printing Library in London, took a 1914 Cicero translation
+                    and scrambled it to make dummy text for Letraset's Body Type
+                    sheets. It has survived not only many decades.
+                  </p>
+                </div>
+              </article>
+
+              <article id="about-location">
+                <div class="about-text">
+                  <h2>Localização</h2>
+                  <p>
+                    A oficina mecânica TB Diesel está localizada na cidade de
+                    Três Barras, em Santa Catarina. Nossa localização
+                    estratégica permite um fácil acesso para clientes de toda a
+                    região, garantindo que possamos atender rapidamente às suas
+                    necessidades de manutenção e serviços de guincho.
+                  </p>
+                  <p>
+                    Clique no mapa para visualizar nossa localização exata e
+                    obter a rota para chegar até nós.
+                  </p>
+                </div>
+                <div id="about-map" class="about-media">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2204.378641089676!2d-50.301715904728475!3d-26.12889811537345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e70d1852f3da7d%3A0xcf97d4129759107!2sTB%20Diesel!5e1!3m2!1spt-BR!2sbr!4v1791331706987!5m2!1spt-BR!2sbr"
+                    title="Mapa de localização da TB Diesel"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                  ></iframe>
+                </div>
+              </article>
+
+              <div id="about-partners">
+                <h3>Nossos parceiros</h3>
+                <div id="about-partners-grid">
+                  <div class="partner-logo">Logo 1</div>
+                  <div class="partner-logo">Logo 2</div>
+                  <div class="partner-logo">Logo 3</div>
+                  <div class="partner-logo">Logo 4</div>
+                  <div class="partner-logo">Logo 5</div>
+                  <div class="partner-logo">Logo 6</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="blog">
+        <div class="content">
+          <h1>Blog</h1>
+          <div class="blog-grid">
+            <article class="blog-card">
+              <div class="blog-date">
+                <time datetime="2026-06-10">
+                  <span>10</span>
+                  <span>Jun/2026</span>
+                </time>
+              </div>
+              <img
+                class="blog-image"
+                src="/images/carousel/1.png"
+                alt="Imagem do blog"
+              />
+              <div class="blog-text">
+                <h2>Post 1</h2>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since 1966.
+                </p>
+              </div>
+              <a href="/post.html" class="btn btn-second">Ler mais</a>
+            </article>
+            <article class="blog-card">
+              <div class="blog-date">
+                <time datetime="2026-06-15">
+                  <span>15</span>
+                  <span>Jun/2026</span>
+                </time>
+              </div>
+              <img
+                class="blog-image"
+                src="/images/carousel/2.png"
+                alt="Imagem do blog"
+              />
+              <div class="blog-text">
+                <h2>Post 2</h2>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since 1966.
+                </p>
+              </div>
+              <a href="/post.html" class="btn btn-second">Ler mais</a>
+            </article>
+            <article class="blog-card">
+              <div class="blog-date">
+                <time datetime="2026-06-20">
+                  <span>20</span>
+                  <span>Jun/2026</span>
+                </time>
+              </div>
+              <img
+                class="blog-image"
+                src="/images/carousel/3.png"
+                alt="Imagem do blog"
+              />
+              <div class="blog-text">
+                <h2>Post 3</h2>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since 1966.
+                </p>
+              </div>
+              <a href="/post.html" class="btn btn-second">Ler mais</a>
+            </article>
+          </div>
+          <a href="/blog.html" class="btn btn-second">Ver todos os posts</a>
+        </div>
+      </section>
+    </main>
+
+    <footer id="footer">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="wrapper-logo">
+            <a href="/">
+              <img src="/images/logo.png" alt="Logo TruckStar" />
+            </a>
+          </div>
+          <div class="footer-social-links">
+            <a
+              href="https://wa.me/554736272028?text=Olá%20TB%20Diesel!"
+              target="_blank"
+              rel="noopener noreferrer"
+              >WhatsApp</a
+            >
+            <a href="#">Instagram</a>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contato</h3>
+          <address class="footer-details">
+            <a href="mailto:contato@tbdiesel.com.br">contato@tbdiesel.com.br</a>
+            <a href="tel:36272028">(47) 3627-2028</a>
+          </address>
+        </div>
+
+        <div class="footer-column">
+          <h3>Horários</h3>
+          <div class="footer-details">
+            <p>Segunda a Sexta</p>
+            <p>08:00 - 18:00</p>
+          </div>
+        </div>
+
+        <div class="footer-column">
+          <h3>Links</h3>
+          <nav class="footer-details" aria-label="Links rápidos">
+            <ul>
+              <li><a href="/index.html">Início</a></li>
+              <li><a href="/services.html">Serviços</a></li>
+              <li><a href="#tow-truck">Guincho</a></li>
+              <li><a href="/products.html">Produtos</a></li>
+              <li><a href="#about">Sobre</a></li>
+              <li><a href="/blog.html">Blog</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        <p>© Todos os direitos reservados.</p>
+      </div>
+    </footer>
+
+    <script>
+      // --------- HEADER ---------
+
+      const header = document.getElementById("header");
+
+      function updateHeaderHeight() {
+        document.documentElement.style.setProperty(
+          "--header-height",
+          `${header.offsetHeight}px`,
+        );
+      }
+
+      updateHeaderHeight();
+
+      const headerObserver = new ResizeObserver(updateHeaderHeight);
+      headerObserver.observe(header);
+
+      // --------- MENU ---------
+
+      const menu = document.getElementById("menu");
+      const menuIcon = document.getElementById("menu-icon");
+
+      function handleDisplayMenu() {
+        const isOpen = menu.classList.toggle("menu-open");
+
+        if (isOpen) {
+          menuIcon.querySelector("img").src = "/images/close.svg";
+          menuIcon.setAttribute("aria-label", "Fechar menu");
+        } else {
+          menuIcon.querySelector("img").src = "/images/menu.svg";
+          menuIcon.setAttribute("aria-label", "Abrir menu");
+        }
+
+        menuIcon.setAttribute("aria-expanded", String(isOpen));
+      }
+
+      // --------- CAROUSEL ---------
+
+      const carouselRadios = [
+        document.getElementById("carousel-radio-1"),
+        document.getElementById("carousel-radio-2"),
+        document.getElementById("carousel-radio-3"),
+        document.getElementById("carousel-radio-4"),
+      ];
+
+      let numberOfCarouselRadioChecked = 1;
+      let intervalToChangeCarouselImage = null;
+
+      function startCarouselInterval() {
+        if (intervalToChangeCarouselImage != null) {
+          clearInterval(intervalToChangeCarouselImage);
+        }
+
+        intervalToChangeCarouselImage = setInterval(
+          changeImageCarouselByArrow,
+          5000,
+          "right",
+        );
+      }
+
+      function setCarouselRadioChecked(number) {
+        const totalSlides = carouselRadios.length;
+        const normalizedNumber =
+          ((((number - 1) % totalSlides) + totalSlides) % totalSlides) + 1;
+
+        numberOfCarouselRadioChecked = normalizedNumber;
+
+        carouselRadios.forEach((radio, index) => {
+          radio.checked = index + 1 === normalizedNumber;
+        });
+
+        startCarouselInterval();
+      }
+
+      setCarouselRadioChecked(1);
+
+      function changeImageCarouselByArrow(direction) {
+        const totalSlides = carouselRadios.length;
+        let number = numberOfCarouselRadioChecked;
+
+        if (direction === "left") {
+          number = ((number - 2 + totalSlides) % totalSlides) + 1;
+        } else if (direction === "right") {
+          number = (number % totalSlides) + 1;
+        }
+
+        setCarouselRadioChecked(number);
+      }
+
+      function changeImageCarouselByMenu(radio) {
+        setCarouselRadioChecked(parseInt(radio.value, 10));
+      }
+    </script>
+  </body>
+</html>

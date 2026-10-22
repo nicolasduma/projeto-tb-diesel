@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="global-style.css" />
+    <link rel="stylesheet" href="admin-pages.css" />
+    <link rel="stylesheet" href="manage-posts.css" />
+    <title>TB Diesel | Gerenciar posts</title>
+  </head>
+  <body>
+    <header id="header">
+      <div id="header-content">
+        <a class="wrapper-logo" href="blog.html" aria-label="Voltar ao blog">
+          <img src="images/logo.png" alt="Logo TruckStar" />
+        </a>
+        <span class="admin-label">Painel administrativo</span>
+        <a class="btn btn-primary" href="create-post.html"> Criar post </a>
+      </div>
+    </header>
+
+    <main>
+      <section id="manage-posts">
+        <div class="content">
+          <h1>Gerenciar posts</h1>
+          <div id="posts-list" class="manage-posts-list">
+            <article class="manage-post-card">
+              <img
+                class="manage-post-image"
+                src="images/carousel/1.png"
+                alt=""
+              />
+              <div class="manage-post-details">
+                <time class="manage-post-date" datetime="2026-06-28">
+                  28 de junho de 2026
+                </time>
+                <h2>Post 1</h2>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since 1966.
+                </p>
+              </div>
+              <div class="manage-post-actions">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  title="Ação disponível após a integração com o PHP."
+                >
+                  Editar
+                </button>
+                <button
+                  class="btn btn-primary btn-delete-post"
+                  type="button"
+                  title="Ação disponível após a integração com o PHP."
+                >
+                  Excluir
+                </button>
+              </div>
+            </article>
+
+            <article class="manage-post-card">
+              <img
+                class="manage-post-image"
+                src="images/carousel/2.png"
+                alt=""
+              />
+              <div class="manage-post-details">
+                <time class="manage-post-date" datetime="2026-06-15">
+                  15 de junho de 2026
+                </time>
+                <h2>Post 2</h2>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since 1966.
+                </p>
+              </div>
+              <div class="manage-post-actions">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  title="Ação disponível após a integração com o PHP."
+                >
+                  Editar
+                </button>
+                <button
+                  class="btn btn-primary btn-delete-post"
+                  type="button"
+                  title="Ação disponível após a integração com o PHP."
+                >
+                  Excluir
+                </button>
+              </div>
+            </article>
+
+            <article class="manage-post-card">
+              <img
+                class="manage-post-image"
+                src="images/carousel/3.png"
+                alt=""
+              />
+              <div class="manage-post-details">
+                <time class="manage-post-date" datetime="2026-05-20">
+                  20 de maio de 2026
+                </time>
+                <h2>Post 3</h2>
+                <p>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since 1966.
+                </p>
+              </div>
+              <div class="manage-post-actions">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  title="Ação disponível após a integração com o PHP."
+                >
+                  Editar
+                </button>
+                <button
+                  class="btn btn-primary btn-delete-post"
+                  type="button"
+                  title="Ação disponível após a integração com o PHP."
+                >
+                  Excluir
+                </button>
+              </div>
+            </article>
+          </div>
+          <p id="empty-list" class="empty-list" hidden>
+            Não há posts para exibir.
+          </p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
